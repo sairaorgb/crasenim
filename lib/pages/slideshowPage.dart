@@ -30,25 +30,19 @@ class _FullscreenCarouselState extends State<FullscreenCarousel> {
               final imageWidget = src.startsWith('http')
                   ? Image.network(
                       src,
-                      fit: BoxFit.cover,
+                      fit: BoxFit.contain, // Changed from cover to contain
                       width: double.infinity,
                       height: double.infinity,
                     )
                   : Image.asset(
                       'assets/images/meds/' + src,
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-                      height: double.infinity,
+                      fit: BoxFit.contain,
+                      width: double.maxFinite,
+                      height: double.maxFinite,
                     );
-
-              // Optional pinch-zoom:
-              // return InteractiveViewer(child: imageWidget, panEnabled: true, minScale: 1, maxScale: 4);
-
               return SizedBox.expand(child: imageWidget);
             },
           ),
-
-          // Minimal page indicator (optional but handy)
           Positioned(
             left: 0,
             right: 0,

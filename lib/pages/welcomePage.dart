@@ -20,6 +20,7 @@ class Welcomepage extends StatelessWidget {
     final buttonPaddingV = isTablet ? size.height * 0.03 : size.height * 0.02;
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
@@ -40,7 +41,6 @@ class Welcomepage extends StatelessWidget {
                           'assets/images/logo.jpeg',
                           height: logoHeight,
                           fit: BoxFit.contain,
-                          filterQuality: FilterQuality.high,
                         ),
                       ),
 
