@@ -37,8 +37,8 @@ class _FullscreenCarouselState extends State<FullscreenCarousel> {
                   : Image.asset(
                       'assets/images/meds/' + src,
                       fit: BoxFit.contain,
-                      width: double.maxFinite,
-                      height: double.maxFinite,
+                      width: double.infinity,
+                      height: double.infinity,
                     );
               return SizedBox.expand(child: imageWidget);
             },

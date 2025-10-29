@@ -15,7 +15,7 @@ class _HomepageState extends State<Homepage> {
     ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg'],
     ['1.jpg', '5G.jpg', '8.jpg', '4.jpg', '6.jpg'],
     ['1.jpg', '7.jpg'],
-    ['1.jpg', '5.jpg', '4.jpg', '6.jpg'],
+    ['5.jpg', '4.jpg', '6.jpg'],
   ];
   late List<String> currScopeImages;
 
@@ -246,7 +246,8 @@ class _HomepageState extends State<Homepage> {
               child: ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(double.infinity, isTablet ? 48 : 44),
-                  backgroundColor: Color(0xFF06B6D4), // teal-ish accent
+                  // backgroundColor: Color(0xFF06B6D4), // teal-ish accent
+                  backgroundColor: Color(0xFF3B82F6),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
