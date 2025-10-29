@@ -35,7 +35,7 @@ class _FullscreenCarouselState extends State<FullscreenCarousel> {
                       height: double.infinity,
                     )
                   : Image.asset(
-                      src,
+                      'assets/images/meds/' + src,
                       fit: BoxFit.cover,
                       width: double.infinity,
                       height: double.infinity,
