@@ -1,4 +1,6 @@
+import 'package:crasenimpharma/database.dart';
 import 'package:crasenimpharma/pages/presentationPage.dart';
+import 'package:crasenimpharma/utils/selectMeds.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -11,23 +13,39 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   var grpIndex = 0;
-  var groupedImages = [
-    ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg'],
-    ['1.jpg', '5G.jpg', '8.jpg', '4.jpg', '6.jpg'],
-    ['1.jpg', '7.jpg'],
-    ['5.jpg', '4.jpg', '6.jpg'],
-  ];
+  late List<List<String>> groupedImages;
   late List<String> currScopeImages;
+  late List<String> labels;
+
+  void initState() {
+    Database db = Database();
+    groupedImages = db.groupedImages;
+    labels = db.specialities;
+  }
 
   // Helper to build the menu list used for both drawer and tablet pane
   Widget _buildMenu(double sideWidth, bool isTablet, Size size) {
     // Put these near top of file or inside your widget build scope
-    final labels = ["MD Physician", "Gynae", "Pedia", "Ortho"];
+
     final icons = [
-      Icons.medical_services, // MD Physician
+      Icons.local_hospital, // G.P (General Practitioner)
+      Icons.school, // M.B.B.S (education/training)
       Icons.female, // Gynae
+      Icons.medical_services, // MD (Physician)
       Icons.child_care, // Pedia
-      Icons.healing, // Ortho
+      Icons.accessibility_new, // Ortho (mobility)
+      Icons.medical_information, // Dentist (closest fit for dental)
+      Icons.favorite, // Cardio (heart!)
+      Icons.bloodtype, // Diabetic (blood sugar hint)
+      Icons.cut, // Surgeon (operation)
+      Icons.analytics, // Endocrinologist (hormone regulation)
+      Icons.restaurant, // Gastro (digestive system)
+      Icons.hearing, // E.N.T (ear/nose/throat)
+      Icons.spa, // Derma (skin care / wellness)
+      Icons.remove_red_eye, // Optha (eye)
+      Icons.air, // Pulmonologist (lungs / breathing)
+      Icons.water_drop, // Urologist (urinary system)
+      Icons.psychology, // Neuro (brain)
     ];
 
     // The improved drawer widget
@@ -89,7 +107,7 @@ class _HomepageState extends State<Homepage> {
                             Text(
                               'Crasenim Pharma',
                               style: GoogleFonts.poppins(
-                                fontSize: isTablet ? 18 : 14,
+                                fontSize: isTablet ? 24 : 14,
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
@@ -328,7 +346,23 @@ class _HomepageState extends State<Homepage> {
                           width: size.width * 0.6,
                         ),
                       ),
-                      // Place the presentation button with more padding on larger screens
+                      Positioned.fill(
+                        left: 0,
+                        top: 100,
+                        child: Column(
+                          children: [
+                            // speciality
+                            Text(labels[grpIndex]),
+
+                            // list of medicines
+                            Expanded(
+                              child: SelectMedicine(
+                                currScopeMedicines: groupedImages[grpIndex],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                       Positioned(
                         right: 48, // Increased padding
                         top: 48, // Increased padding

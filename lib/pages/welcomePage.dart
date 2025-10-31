@@ -19,6 +19,11 @@ class Welcomepage extends StatelessWidget {
     final buttonPaddingH = isTablet ? size.width * 0.08 : size.width * 0.06;
     final buttonPaddingV = isTablet ? size.height * 0.03 : size.height * 0.02;
 
+    // Colors tuned to match earlier palette
+    const Color brandBlue = Color(0xFF3B82F6);
+    const Color accentTeal = Color(0xFF0EA5C9);
+    const Color paleBg = Color(0xFFF8FAFC);
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -43,8 +48,6 @@ class Welcomepage extends StatelessWidget {
                           fit: BoxFit.contain,
                         ),
                       ),
-
-                      Spacer(flex: 1),
 
                       // Button area with responsive width and padding
                       Padding(
