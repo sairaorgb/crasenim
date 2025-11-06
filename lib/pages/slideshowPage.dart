@@ -27,19 +27,15 @@ class _FullscreenCarouselState extends State<FullscreenCarousel> {
             itemBuilder: (context, i) {
               final src = widget.images[i];
 
-              final imageWidget = src.startsWith('http')
-                  ? Image.network(
-                      src,
-                      fit: BoxFit.contain, // Changed from cover to contain
-                      width: double.infinity,
-                      height: double.infinity,
-                    )
-                  : Image.asset(
-                      'assets/images/meds/' + src,
-                      fit: BoxFit.contain,
-                      width: double.infinity,
-                      height: double.infinity,
-                    );
+              final imageWidget = InteractiveViewer(
+                panEnabled: true,
+                child: Image.asset(
+                  'assets/images/meds/' + src,
+                  fit: BoxFit.contain,
+                  width: double.infinity,
+                  height: double.infinity,
+                ),
+              );
               return SizedBox.expand(child: imageWidget);
             },
           ),

@@ -40,7 +40,7 @@ class Database {
     ],
     [
       '1.jpg',
-      '5G.jpg',
+      'Gyanic.jpg',
       'Vimily.jpg',
       'Amoxsenim.jpg',
       'Pansenim.jpg',
@@ -81,7 +81,7 @@ class Database {
     'Metsenim.jpg',
     'Amoxsenim.jpg',
     'Crasenim.jpg',
-    '5G.jpg',
+    'Gyanic.jpg',
     'Pansenim.jpg',
     'Babybar.jpg',
     'Vimily.jpg',

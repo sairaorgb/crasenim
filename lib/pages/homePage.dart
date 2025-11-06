@@ -1,3 +1,4 @@
+import 'package:crasenimpharma/components/detailingHomePage.dart';
 import 'package:crasenimpharma/database.dart';
 import 'package:crasenimpharma/pages/presentationPage.dart';
 import 'package:crasenimpharma/utils/selectMeds.dart';
@@ -293,101 +294,36 @@ class _HomepageState extends State<Homepage> {
     currScopeImages = groupedImages[grpIndex];
     final mq = MediaQuery.of(context);
     final size = mq.size;
-    final isTablet = size.shortestSide >= 600;
-    // side panel width for tablet, clamped to reasonable sizes
     final sideWidth = (size.width * 0.22).clamp(200.0, size.width * 0.38);
 
     return Scaffold(
-      // on phones provide a drawer, on tablets show a permanent side pane
       backgroundColor: Color(0xFFF9FAFB),
-      drawer: isTablet
-          ? null
-          : Drawer(
-              backgroundColor: Colors.white, // Keep background white
-              elevation: 8.0, // Add elevation for a soft shadow
-              shape: RoundedRectangleBorder(
-                // Add border radius to the drawer
-                borderRadius: BorderRadius.horizontal(
-                  right: Radius.circular(16),
-                ),
-              ),
-              child: _buildMenu(sideWidth, isTablet, size),
-            ),
-      body: isTablet
-          ? Row(
-              children: [
-                Container(
-                  width: sideWidth,
-                  // Use BoxDecoration for color, border radius, and shadow
-                  decoration: BoxDecoration(
-                    color: Colors.white, // Background color
-                    borderRadius: BorderRadius.horizontal(
-                      right: Radius.circular(16),
-                    ), // Border radius
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.3), // Soft shadow
-                        spreadRadius: 2,
-                        blurRadius: 10,
-                        offset: Offset(4, 0), // Shadow to the right
-                      ),
-                    ],
-                  ),
-                  child: _buildMenu(sideWidth, isTablet, size),
-                ),
-                Expanded(
-                  child: Stack(
-                    children: [
-                      Center(
-                        child: Image.asset(
-                          'assets/images/logo.jpeg',
-                          opacity: AlwaysStoppedAnimation(0.1),
-                          fit: BoxFit.contain,
-                          width: size.width * 0.6,
-                        ),
-                      ),
-                      Positioned.fill(
-                        left: 0,
-                        top: 100,
-                        child: Column(
-                          children: [
-                            // speciality
-                            Text(labels[grpIndex]),
-
-                            // list of medicines
-                            Expanded(
-                              child: SelectMedicine(
-                                currScopeMedicines: groupedImages[grpIndex],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Positioned(
-                        right: 48, // Increased padding
-                        top: 48, // Increased padding
-                        child: Presentationpage(imageList: currScopeImages),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            )
-          : Stack(
-              children: [
-                Center(
-                  child: Image.asset(
-                    'assets/images/logo.jpeg',
-                    opacity: AlwaysStoppedAnimation(0.1),
-                  ),
-                ),
-                Positioned(
-                  right: 20, // Increased padding
-                  top: 40, // Increased padding
-                  child: Presentationpage(imageList: currScopeImages),
+      body: Row(
+        children: [
+          Container(
+            width: sideWidth,
+            decoration: BoxDecoration(
+              color: Colors.white, // Background color
+              borderRadius: BorderRadius.horizontal(
+                right: Radius.circular(16),
+              ), // Border radius
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.3), // Soft shadow
+                  spreadRadius: 2,
+                  blurRadius: 10,
+                  offset: Offset(4, 0), // Shadow to the right
                 ),
               ],
             ),
+            child: _buildMenu(sideWidth, true, size),
+          ),
+          DetailingHomePage(
+            specMedicinceList: groupedImages[grpIndex],
+            specialityLabel: labels[grpIndex],
+          ),
+        ],
+      ),
     );
   }
 }

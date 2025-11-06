@@ -29,7 +29,7 @@ class Presentationpage extends StatelessWidget {
         ),
       ),
       child: Text(
-        'Start presentation',
+        'Detailing',
         style: GoogleFonts.secularOne(
           fontSize: fontSize,
           fontWeight: FontWeight.w300,
