@@ -1,9 +1,11 @@
+import 'package:crasenimpharma/pages/OTPpage.dart';
 import 'package:crasenimpharma/pages/homePage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Welcomepage extends StatelessWidget {
-  const Welcomepage({super.key});
+  final bool isLoggedIn;
+  const Welcomepage({super.key, required this.isLoggedIn});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +15,7 @@ class Welcomepage extends StatelessWidget {
     final isTablet = size.shortestSide >= 600;
 
     // Scaled sizes with reasonable clamps
-    final logoHeight = isTablet ? size.height * 0.45 : size.height * 0.28;
+    final logoHeight = isTablet ? size.height * 0.65 : size.height * 0.28;
     final buttonFont = (isTablet ? size.height * 0.035 : size.height * 0.03)
         .clamp(16.0, 36.0);
     final buttonPaddingH = isTablet ? size.width * 0.08 : size.width * 0.06;
@@ -55,7 +57,8 @@ class Welcomepage extends StatelessWidget {
                           horizontal: size.width * 0.08,
                         ),
                         child: SizedBox(
-                          width: double.infinity,
+                          width: size.width * 0.3,
+
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.blue,
@@ -64,17 +67,19 @@ class Welcomepage extends StatelessWidget {
                                 vertical: buttonPaddingV,
                               ),
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
+                                borderRadius: BorderRadius.circular(24),
                               ),
                             ),
                             onPressed: () => Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => Homepage(),
+                                builder: (context) => isLoggedIn
+                                    ? Homepage()
+                                    : VerificationPagePage(),
                               ),
                             ),
                             child: Text(
-                              'Detailing',
+                              'Login',
                               style: GoogleFonts.secularOne(
                                 fontSize: buttonFont,
                                 fontWeight: FontWeight.w300,

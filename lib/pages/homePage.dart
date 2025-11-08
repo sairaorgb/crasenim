@@ -1,6 +1,7 @@
 import 'package:crasenimpharma/components/detailingHomePage.dart';
 import 'package:crasenimpharma/database.dart';
 import 'package:crasenimpharma/pages/presentationPage.dart';
+import 'package:crasenimpharma/pages/welcomePage.dart';
 import 'package:crasenimpharma/utils/selectMeds.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -86,7 +87,15 @@ class _HomepageState extends State<Homepage> {
                   if (!isTablet) Navigator.pop(context);
                 },
                 child: GestureDetector(
-                  onTap: () => Navigator.pop(context),
+                  onTap: () {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Welcomepage(isLoggedIn: true),
+                      ),
+                      (Route<dynamic> route) => false,
+                    );
+                  },
                   child: Row(
                     children: [
                       // Logo as rounded avatar
@@ -143,8 +152,8 @@ class _HomepageState extends State<Homepage> {
                   final selected = grpIndex == idx;
                   return Padding(
                     padding: EdgeInsets.symmetric(
-                      horizontal: isTablet ? 14 : 10,
-                      vertical: 6,
+                      horizontal: isTablet ? 10 : 10,
+                      vertical: 4,
                     ),
                     child: Material(
                       color: Colors.transparent,
@@ -260,29 +269,29 @@ class _HomepageState extends State<Homepage> {
             ),
 
             // Optional footer for quick action
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-              child: ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(
-                  minimumSize: Size(double.infinity, isTablet ? 48 : 44),
-                  // backgroundColor: Color(0xFF06B6D4), // teal-ish accent
-                  backgroundColor: Color(0xFF3B82F6),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  elevation: 6,
-                  shadowColor: Colors.black.withOpacity(0.12),
-                ),
-                onPressed: () {
-                  // Demo action
-                },
-                icon: Icon(Icons.power_settings_new_rounded),
-                label: Text(
-                  'Logout',
-                  style: GoogleFonts.poppins(fontWeight: FontWeight.w600),
-                ),
-              ),
-            ),
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+            //   child: ElevatedButton.icon(
+            //     style: ElevatedButton.styleFrom(
+            //       minimumSize: Size(double.infinity, isTablet ? 48 : 44),
+            //       // backgroundColor: Color(0xFF06B6D4), // teal-ish accent
+            //       backgroundColor: Color(0xFF3B82F6),
+            //       shape: RoundedRectangleBorder(
+            //         borderRadius: BorderRadius.circular(12),
+            //       ),
+            //       elevation: 6,
+            //       shadowColor: Colors.black.withOpacity(0.12),
+            //     ),
+            //     onPressed: () {
+            //       Navigator.pop(context);
+            //     },
+            //     icon: Icon(Icons.home),
+            //     label: Text(
+            //       'Home',
+            //       style: GoogleFonts.poppins(fontWeight: FontWeight.w600),
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),
@@ -294,7 +303,7 @@ class _HomepageState extends State<Homepage> {
     currScopeImages = groupedImages[grpIndex];
     final mq = MediaQuery.of(context);
     final size = mq.size;
-    final sideWidth = (size.width * 0.22).clamp(200.0, size.width * 0.38);
+    final sideWidth = (size.width * 0.3).clamp(200.0, size.width * 0.38);
 
     return Scaffold(
       backgroundColor: Color(0xFFF9FAFB),

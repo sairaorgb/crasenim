@@ -18,7 +18,8 @@ class Presentationpage extends StatelessWidget {
 
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.blue,
+        backgroundColor: Color(0xFF3B82F6),
+
         padding: EdgeInsets.symmetric(horizontal: padH, vertical: padV),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
